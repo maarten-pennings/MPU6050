@@ -41,7 +41,7 @@ void loop() {
   Serial.print(" /");
 
   Serial.print(" te="); Serial.print(data.temp.error);
-  Serial.print(" tx="); Serial.print(data.temp.t);
+  Serial.print(" tt="); Serial.print(data.temp.t);
 
   Serial.println();
 }
