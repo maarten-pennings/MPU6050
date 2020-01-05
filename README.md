@@ -134,13 +134,15 @@ Notes on the example
 
 There are also two use-case examples. 
 
-The [Rotate](examples\Rotate\rotate.ino) example shows how to keep track of your direction.
+The [Rotate](examples/Rotate/rotate.ino) example shows how to keep track of your direction.
 For example in a [robot](https://nl.aliexpress.com/item/4000349560940.html) with two independent 
-(left and right) motor.
+(left and right) motors, it is hard to drive straight: the motors in practive have different speeds
+and different slip.
 
 ![robot](robot.jpg).
 
-The [Shake](examples\Rotate\shake.ino) example shows how to detect shaking the sensor.
+The [Shake](examples/Rotate/shake.ino) example shows how to detect shaking the sensor,
+by just looking at the accelorator data.
 
 (end of doc)
 
