@@ -30,5 +30,28 @@ This project implements an Arduino library for the MPU6050. It comes with some e
 Note that the MPU6050 requires a supply voltage of 3.3V. So, Arduino's 5.0V *not* OK. 
 However, some boards, like the GY521 have an on-board voltage regulator and level shifter.
 
+![GY521 board](GY521.jpg)
 
+## Getting started
+
+Steps to get started
+ - Make sure you have a Nano and an MPU6050, and wire them together
+ - Make sure you have the Arduino IDE and install this library
+ - Open, compile, flash and run one of the examples
+
+These steps are discussed in details below
+
+### Hardware
+
+You need an Arduino, e.g. an [Arduino Nano](https://store.arduino.cc/arduino-nano).
+I got a cheap [clone](https://www.aliexpress.com/item/4000427291663.html) with a USB micro plug.
+
+You need an MPU6050. I got a [GY521 breakout board](https://www.aliexpress.com/item/4000504535389.html)
+with a 5V to 3V regulator.
+
+This library is simple; it only uses the I2C lines. So 4 wires need to be connected.
+
+![wiring](circuit.jpg)
+
+### Software
 
