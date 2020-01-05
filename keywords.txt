@@ -1,0 +1,37 @@
+#######################################
+# Syntax Coloring Map
+#######################################
+# https://spencer.bliven.us/index.php/2012/01/18/arduino-ide-keywords/
+# KEYWORD1 Classes, datatypes, and C++ keywords
+# KEYWORD2 Methods and functions
+# KEYWORD3 setup and loop functions, as well as the Serial keywords
+# LITERAL1 Constants
+# LITERAL2 Built-in variables (unused by default)
+
+
+#######################################
+# Classes, datatypes (KEYWORD1)
+#######################################
+MPU6050	KEYWORD1
+sensor	KEYWORD1
+data	KEYWORD1
+MPU6050_t	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+begin	KEYWORD2
+get	KEYWORD2
+error_str	KEYWORD2
+
+reset	KEYWORD2
+absent	KEYWORD2
+sleep	KEYWORD2
+wake	KEYWORD2
+
+######################################
+# Constants (LITERAL1)
+#######################################
+MPU6050_GRAVITY_EARTH	LITERAL1
+
+
