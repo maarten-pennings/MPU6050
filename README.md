@@ -24,6 +24,14 @@ Applications of gyroscopes include  navigation systems.
 
 Gyroscope suffer from drift, so accelerometers are used to compensate for that.
 
+### Acknowledgements
+
+This project was built upon
+ - [Simple-MPU6050-Arduino](https://github.com/Th-Havy/Simple-MPU6050-Arduino)
+ - [Direction](https://howtomechatronics.com/tutorials/arduino/arduino-and-mpu6050-accelerometer-and-gyroscope-tutorial)
+ - [NXP app note](https://www.nxp.com/files-static/sensors/doc/app_note/AN3461.pdf)
+
+
 ### This project
 This project implements an Arduino library for the MPU6050. It comes with some examples.
 
