@@ -2,7 +2,7 @@
 // https://github.com/maarten-pennings/MPU6050
 #include <mpu6050.h>
 
-MPU6050 sensor;
+MPU6050 mpu6050;
 
 float dir;
 
@@ -12,18 +12,18 @@ void setup()  {
   Serial.println("Driver version " MPU6050_VERSION);
 
   Serial.println("Starting calibration; leave device flat and still");
-  int error= sensor.begin(5000); // 5000 calibration steps instead of default 500
+  int error= mpu6050.begin(5000); // 5000 calibration steps instead of default 500
   Serial.print("MPU6050: ");
-  Serial.println(sensor.error_str(error));
+  Serial.println(mpu6050.error_str(error));
 
   Serial.println("Rotate device to see new direction");
-  MPU6050_t data= sensor.get();
+  MPU6050_t data= mpu6050.get();
   dir= data.dir.yaw;
   Serial.println(dir,0);
 }
 
 void loop() {
-  MPU6050_t data= sensor.get();
+  MPU6050_t data= mpu6050.get();
   if( data.dir.error==0 ) {
     if( abs(data.dir.yaw-dir)>1.0 ) {
       // There is change in direction

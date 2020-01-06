@@ -2,7 +2,7 @@
 // https://github.com/maarten-pennings/MPU6050
 #include <mpu6050.h>
 
-MPU6050 sensor;
+MPU6050 mpu6050;
 
 void setup()  {
   Serial.begin(115200);
@@ -10,18 +10,18 @@ void setup()  {
   Serial.println("Driver version " MPU6050_VERSION);
 
   Serial.print("MPU6050: sensor is ... ");
-  Serial.println( sensor.absent() ? "absent" : "present" ); 
+  Serial.println( mpu6050.absent() ? "absent" : "present" ); 
   
-  int error= sensor.begin();
+  int error= mpu6050.begin();
   Serial.print("MPU6050: ");
-  Serial.println(sensor.error_str(error));
+  Serial.println(mpu6050.error_str(error));
 
   // Give user some time to see potential error messages from startup
   delay(5000);
 }
 
 void loop() {
-  MPU6050_t data= sensor.get();
+  MPU6050_t data= mpu6050.get();
   Serial.print(" ae="); Serial.print(data.accel.error);
   Serial.print(" ax="); Serial.print(data.accel.x);
   Serial.print(" ay="); Serial.print(data.accel.y);

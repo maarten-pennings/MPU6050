@@ -13,7 +13,7 @@
 # Classes, datatypes (KEYWORD1)
 #######################################
 MPU6050	KEYWORD1
-sensor	KEYWORD1
+mpu6050	KEYWORD1
 data	KEYWORD1
 MPU6050_t	KEYWORD1
 
