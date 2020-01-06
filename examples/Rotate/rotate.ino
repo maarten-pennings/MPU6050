@@ -24,7 +24,7 @@ void setup()  {
 
 void loop() {
   MPU6050_t data= sensor.get();
-  if( data.accel.error==0 ) {
+  if( data.dir.error==0 ) {
     if( abs(data.dir.yaw-dir)>1.0 ) {
       // There is change in direction
       dir= data.dir.yaw;
