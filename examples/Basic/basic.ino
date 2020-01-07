@@ -1,5 +1,6 @@
 // basic.ino - Basic example, printing all data from MPU6050
 // https://github.com/maarten-pennings/MPU6050
+#include <Wire.h>
 #include <mpu6050.h>
 
 MPU6050 mpu6050;
@@ -8,6 +9,7 @@ void setup()  {
   Serial.begin(115200);
   Serial.println("\n\nWelcome to the MPU6050 basic example");
   Serial.println("Driver version " MPU6050_VERSION);
+  Wire.begin();
 
   Serial.print("MPU6050: sensor is ... ");
   Serial.println( mpu6050.absent() ? "absent" : "present" ); 

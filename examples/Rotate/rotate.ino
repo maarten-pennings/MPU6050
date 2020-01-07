@@ -1,5 +1,6 @@
 // rotate.ino - Keep track of direction for an Arduino robot using MPU6050
 // https://github.com/maarten-pennings/MPU6050
+#include <Wire.h>
 #include <mpu6050.h>
 
 MPU6050 mpu6050;
@@ -10,6 +11,7 @@ void setup()  {
   Serial.begin(115200);
   Serial.println("\n\nWelcome to the MPU6050 rotation tracker");
   Serial.println("Driver version " MPU6050_VERSION);
+  Wire.begin();
 
   Serial.println("Starting calibration; leave device flat and still");
   int error= mpu6050.begin(5000); // 5000 calibration steps instead of default 500
