@@ -13,9 +13,8 @@ MPU6050 mpu6050;
 
 void mpu6050_begin()  {
   Wire.begin();
-  Serial.println("Starting calibration; leave device flat and still");
-  int error= mpu6050.begin(2000); // 2000 calibration steps instead of default 500
-  Serial.print("MPU6050: ");
+  Serial.print("MPU6050: Starting calibration; leave device flat and still ... ");
+  int error= mpu6050.begin(); 
   Serial.println(mpu6050.error_str(error));
 }
 
@@ -106,8 +105,8 @@ void motor_B_set( int speed ) {
   }
 }
 
-#define MOTOR_NOMINAL  200
-#define MOTOR_DELTAMAX  50
+#define MOTOR_NOMINAL  180
+#define MOTOR_DELTAMAX  75
 
 // Switches both motors off
 void motor_off() {
@@ -127,9 +126,9 @@ void motor_forward(int delta) {
 
 // PID ===================================================
 
-#define PID_K_p 5
-#define PID_K_i 0
-#define PID_K_d 0
+#define PID_K_p 30.0
+#define PID_K_i  0.2
+#define PID_K_d  1.0
 
 float i_input;
 float d_last;
@@ -145,7 +144,7 @@ int pid(float error) {
   float d_input;
     
   p_input= error;
-  i_input+= error;
+  i_input= constrain(i_input+error,-50,+50);
   d_input= error-d_last; d_last=error;
 
   return p_input*PID_K_p + i_input*PID_K_i + d_input*PID_K_d;
@@ -153,19 +152,26 @@ int pid(float error) {
 
 // Main ===================================================
 
+bool     drive_squares; // When true, drives a drive_squaress, otherwise straight
+uint32_t last;   // last time (in ms) we turned 90 degrees at the corner of a drive_squares 
+
 int state;
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("Welcome at PID robot");
+  Serial.println("\n\nWelcome at PID robot");
   button_begin();
-  motor_begin();
+  drive_squares= button_down();
+  if( drive_squares ) Serial.println("Driving squares"); else Serial.println("Driving straight");
+  motor_begin();  
   pid_begin();
   mpu6050_begin();
 
   motor_off();
   state= 0;
+  Serial.println();
 }
+
 
 float target_dir;
 
@@ -186,6 +192,7 @@ void loop() {
       // Motors were off, user pressed button, switch on
       delay(500); // give user some time to release button
       target_dir= mpu6050_yaw(); // Take current direction as target
+      if( drive_squares ) last= millis();
       motor_forward(0); // Motors on, 0=steering straight
       Serial.println("Motors started");
       state= 3;
@@ -193,11 +200,14 @@ void loop() {
     case 3:
       // Motors running, PID active
       current_dir= mpu6050_yaw();
-      Serial.print(" dir="); Serial.print(current_dir,0);
-      Serial.print(" tgt="); Serial.print(target_dir,0);
+      Serial.print(" dir="); Serial.print(current_dir,2);
+      Serial.print(" tgt="); Serial.print(target_dir,2);
       steer= pid( target_dir - current_dir );
       Serial.print(" steer="); Serial.println(steer);
       motor_forward(steer);  
+      if( drive_squares ) {
+        if( millis()-last>3000 ) { target_dir+= 90; last= millis(); }
+      }
       if( button_down() ) state=4;
       break;
     case 4:
