@@ -140,7 +140,7 @@ Notes on the example
     
 ## Other examples
 
-There are also two use-case examples. 
+There are also three use-case examples. 
 
 The [Rotate](examples/Rotate) example shows how to keep track of your direction.
 For example in a [robot](https://nl.aliexpress.com/item/4000349560940.html) with two independent 
@@ -151,6 +151,11 @@ and different slip.
 
 The [Shake](examples/Shake) example shows how to detect shaking the sensor,
 by just looking at the accelorator data.
+
+The most elaborate example is [PID](examples/Pid).
+It uses a PID controller to go straight.
+See this [video](https://youtu.be/anDGpxeQeNc) for a demo.
+Or [this one](https://youtu.be/pTtPlrXje0I) where the robot runs in "squares".
 
 (end of doc)
 
