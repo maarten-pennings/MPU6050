@@ -76,6 +76,9 @@ The software steps to take
     - An alternative to the last step is to manually add the library: 
       Unzip the file "Here", and copy the entire tree to the Arduino library directory. This `README.md` should 
       be located at e.g. `C:\Users\maarten\Documents\Arduino\libraries\MPU6050\README.md`.
+ - Somehow, I have quite some I2C trouble (communication errors) between the Nano and the MPU6050.
+   Unfortunately, some of the issues cause the Nano I2C library to hang: there is a while loop without time-out.
+   If you suffer from I2C hangs, you could consider [adding the timeout patch](https://github.com/maarten-pennings/TWI).
 
 ### Example
 
