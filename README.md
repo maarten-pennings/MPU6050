@@ -35,7 +35,7 @@ This project was built upon
 ### This project
 This project implements an Arduino library for the MPU6050. It comes with some examples.
 
-Note that the MPU6050 requires a supply voltage of 3.3V. So, Arduino's 5.0V *not* OK. 
+Note that the MPU6050 requires a supply voltage of 3.3V. So, Arduino's 5.0V is *not* OK. 
 However, some boards, like the GY521 have an on-board voltage regulator and level shifter.
 
 ![GY521 board](GY521.jpg)
@@ -44,9 +44,9 @@ However, some boards, like the GY521 have an on-board voltage regulator and leve
 
 These steps are discussed in details below
 
- - Make sure you have a microcontroller and a sensor, and wire them together
- - Make sure you have the Arduino IDE and install this library
- - Open, compile, flash and run one of the examples
+ - Hardware: make sure you have a microcontroller and a sensor, and wire them together
+ - Software: make sure you have the Arduino IDE and install this library
+ - Example: open, compile, flash and run one of the library examples
 
 
 ### Hardware
@@ -113,32 +113,32 @@ MPU6050: success
 
 Notes on the example
  - On the first line see a general banner for the example application
- - On the second line see the actual version of this library (your might be newer)
+ - On the second line see the actual version of this library (yours might be newer)
  - On the third line, the application checks if the MPU6050 is present (correctly connected).
    Unfortunately, the Arduino I2C library does not feature a time-out (or a very long one) 
    when an I2C device is not responding.
-   So if it takes a forever for the `present` to appear, you likely have a connection problem.
+   So if it takes "forever" for the `present` to appear, you likely have a connection problem.
  - The next line (with `success`) gives the status of the `MPU6050.begin()` call.
    This call wakes-up the device, configures it, calibrates it.
    If it does not say `success` you have a problem.
- - Every next lines shows feedback from one measurement, showing details of the 4 sensors inside the MPU6050.
+ - Every next lines show feedback from one measurement, showing details of the 4 sensors inside the MPU6050.
  - The first block shows the *a*ccelerator data.
-    - `ae` should be 0, otherwise there was an I2C `error` when reading the accelerator data.
+    - `ae` should be 0, otherwise there was an I2C error when reading the accelerator data.
     - `ax` is the acceleration in x-direction (in m/s²).
     - similarly `ay` and `az` are the acceleration in y-direction respectively z-direction.
     - note that indeed `az` is about 9.81, earth's gravity.
  - The second block shows the *g*yroscope data.
-    - `ge` should be 0, otherwise there was an I2C `error` when reading the gyroscope data.
+    - `ge` should be 0, otherwise there was an I2C error when reading the gyroscope data.
     - `gx` is the angular rate in x-direction (in °/sec).
     - similarly `gy` and `gz` are the angular rate in y-direction respectively z-direction.
     - note that all these are typical (calibrated to be) 0 as long as the sensor is stationary.
- - The third block is _computed_ from the previous two. It computes the roll, pitch, and yaw *d*irection.
-    - `de` should be 0, otherwise there was an I2C `error` when reading the accelerometer or gyroscope data.
+ - The third block is *computed* from the previous two. It computes the roll, pitch, and yaw *d*irection.
+    - `de` should be 0, otherwise there was an I2C error when reading the accelerometer or gyroscope data.
     - `dx` is the roll (in °).
     - similarly `dy` and `dz` are the pitch and yaw.
     - note that all these are typical (calibrated to be) 0 as long as the sensor is stationary.
- - The fourth block shows the _t_emperature data.
-    - `te` should be 0, otherwise there was an I2C `error` when reading the temperature data.
+ - The fourth block shows the *t*emperature data.
+    - `te` should be 0, otherwise there was an I2C error when reading the temperature data.
     - `tt` is the temperature (in °C).
     
 ## Other examples
